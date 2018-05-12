@@ -1,0 +1,51 @@
+<div class="container">
+  <div class="row">
+    <img class="google-logo" src="../../assets/google.png" alt="google" (click)="back()">
+  </div>
+  <div class="card">
+    <div class="card-body">
+      <div *ngIf="!hasVoted && !updating">
+        <div class="text-center">
+          <h2>Whis is your favorite frontend framework?</h2>
+          <h4>Click on the logon below to vote!</h4>
+        </div>
+        <br>
+        <div class="row">
+          <div class="offset-md-3 col-md-2">
+            <img src="../../assets/angular_logo.png" height="96" alt="Angular" (click)="vote('angularVoteCount')" />
+          </div>
+          <div class="col-md-2">
+            <img src="../../assets/react_logo.png" height="96" alt="React" (click)="vote('reactVoteCount')" />
+          </div>
+          <div class="col-md-2">
+            <img src="../../assets/vuejs_logo.png" height="96" alt="Vuejs" (click)="vote('vueVoteCount')" />
+          </div>
+        </div>
+      </div>
+      <div *ngIf="updating">
+        <h3>Thanks. Redirecting to voteing Results...</h3>
+      </div>
+      <div *ngIf="hasVoted">
+        <span class="badge badge-pill badge-danger mb-1">
+          Angular: {{angularVoteCount}} ( {{angularVotePercent}} %)
+        </span>
+        <div class="progress">
+          <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" [style.width.%]="angularVotePercent"></div>
+        </div>
+        <span class="badge badge-pill badge-danger mb-1">
+          React: {{reactVoteCount}} ( {{reactVotePercent}} %)
+        </span>
+        <div class="progress">
+          <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" [style.width.%]="reactVotePercent"></div>
+
+        </div>
+        <span class="badge badge-pill badge-danger mb-1">
+          VueJS: {{vueVoteCount}} ( {{vueVotePercent}} %)
+        </span>
+        <div class="progress">
+          <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" [style.width.%]="vueVotePercent"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,10 @@
+@import '~bootstrap/dist/css/bootstrap.min.css';
+
+.google-logo {
+    height: 300px;
+    padding-left: 150px;
+}
+
+.text-center {
+  text-align: center;
+}
