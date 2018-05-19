@@ -1,4 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, Injector } from '@angular/core';
+import { createCustomElement } from '@angular/elements';
+
+import { AlertComponent } from './alert/alert.component';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +10,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app';
+  content = null;
+  constructor(injector: Injector, domSanitizer: DomSanitizer) {
+    const AlertElement = createCustomElement(AlertComponent, {
+      injector: injector
+    });
+    customElements.define('my-alert', AlertElement);
+    setTimeout(() => {
+      this.content = domSanitizer.bypassSecurityTrustHtml('<my-alert message="This is simple alert"></my-alert>');
+    }, 1000);
+  }
 }
